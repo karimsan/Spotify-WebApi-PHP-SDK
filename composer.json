@@ -1,5 +1,5 @@
 {
-    "name": "kirilkirkov/spotify-webapi-sdk",
+    "name": "karimsan/spotify-webapi-sdk",
     "description": "Spotify WebApi PHP Library",
     "type": "library",
     "license": "MIT",
@@ -12,8 +12,8 @@
       }
     ],
     "require": {
-        "php": ">=7.2.0",
-        "guzzlehttp/guzzle": "~6.0"
+        "php": "^8.0",
+        "guzzlehttp/guzzle": "~7.0"
     },
     "repositories": [
         {
@@ -27,4 +27,3 @@
         }
       }
   }
-  
