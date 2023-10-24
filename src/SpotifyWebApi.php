@@ -9,7 +9,7 @@ use Guzzle\Http\Exception\ClientErrorResponseException;
  * @author Kiril Kirkov
  * @link https://github.com/kirilkirkov/Spotify-WebApi-PHP-SDK
  * @version 1.2
- * 
+ *
  * Spotify Web Api
  */
 
@@ -202,7 +202,7 @@ class SpotifyWebApi
         $this->requestParams['form_params'][$key] = $value;
         return $this;
     }
-    
+
     /**
      * @param string $value Value of guzzle form_params full array
      */
@@ -237,7 +237,7 @@ class SpotifyWebApi
     {
         return $this->clientSecret;
     }
-    
+
     /**
      * @param string $uri Api uri
      */
@@ -254,20 +254,20 @@ class SpotifyWebApi
 
     public function provider(Array $service)
     {
-        array_walk($service, function(&$value, &$key) {
+        array_walk($service, function(&$value, $key) {
             if(method_exists($this, $key)) {
                 $this->{$key}($value);
             } else if(property_exists($this, $key)) {
                 $this->{$key} = $value;
             }
         });
-        return $this; 
+        return $this;
     }
 
     /**
      * Generate token with code - Step 1/2
      * Send user to login after that redirect back with code for access token
-     * 
+     *
      * @param string $redirectUri Callback url with returned $_GET['code'].
      * @param string $clientId Optional Client Id if is not set in instance constructor.
      * @param array $options Optional. Parameters - scope, show_dialog or state.
@@ -290,7 +290,7 @@ class SpotifyWebApi
     /**
      * Generate token with code - Step 2/2
      * Get the access token with the returned code
-     * 
+     *
      * @param string $code Code for token.
      * @param string $redirectUri Callback url with returned access token.
      * @return array Access Token and Refresh Token
@@ -313,7 +313,7 @@ class SpotifyWebApi
     /**
      * Get access token with client credentials
      * Access token expires in 24 hours
-     * 
+     *
      * @param string $clientId Client id.
      * @param string $clientSecret Client secret.
      * @return string Access Token
@@ -321,12 +321,12 @@ class SpotifyWebApi
     public function getAccessTokenWithCredentials(String $clientId = null, String $clientSecret = null)
     {
         if($clientId != null) {
-            $this->setClientId($clientId); 
+            $this->setClientId($clientId);
         }
         if($clientSecret != null) {
             $this->setClientSecret($clientSecret);
         }
-        
+
         $this->setAuthParams([$this->getClientId(), $this->getClientSecret()]);
         return $this->account()->provider(SpotifyServices::token())->setFormParams([
             'grant_type' => 'client_credentials',
@@ -337,7 +337,7 @@ class SpotifyWebApi
         }
         return $response->access_token;
     }
- 
+
     /**
      * Set Generated Access Token
      *
@@ -433,7 +433,7 @@ class SpotifyWebApi
             }
         }
     }
-    
+
     private function errorHandler(SpotifyWebAPIException $e)
     {
         if($e->hasExpiredToken()) {
@@ -510,7 +510,7 @@ class SpotifyWebApi
         }
         return $this;
     }
-    
+
     public function getResponse()
     {
         return $this->response;
@@ -536,12 +536,12 @@ class SpotifyWebApi
 
     /**
      * Auto refresh expired token
-     * 
+     *
      * @return string Access Token
      */
     public function refreshAccessToken()
     {
-        $this->setAuthParams([$this->getClientId(), $this->getClientSecret()]);    
+        $this->setAuthParams([$this->getClientId(), $this->getClientSecret()]);
         try {
             return $this->account()->provider(SpotifyServices::token())->setFormParams([
                 'grant_type' => 'refresh_token',
