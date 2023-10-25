@@ -3,7 +3,6 @@
 namespace SpotifyWebAPI;
 
 use \GuzzleHttp\Client as GuzzleClient;
-use Guzzle\Http\Exception\ClientErrorResponseException;
 
 /**
  * @author Kiril Kirkov
@@ -548,7 +547,7 @@ class SpotifyWebApi
                 'refresh_token' => $this->getRefreshToken(),
             ])->getResult();
         } catch(SpotifyWebAPIException $e) {
-            throw new SpotifyWebAPIException('Cant Refresh Access Token - ' . $e->getMessage());
+            throw new SpotifyWebAPIException('Cant Refresh Access Token - ' . $e->getMessage(), $e->getCode());
         }
     }
 }
