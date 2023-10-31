@@ -175,6 +175,12 @@ class SpotifyWebApi
         $this->requestParams['query'] = $value;
     }
 
+    public function setJsonParams(Array $value)
+    {
+        $this->requestParams['json'] = $value;
+        return $this;
+    }
+
     /**
      * @return array All params for the guzzle query
      */

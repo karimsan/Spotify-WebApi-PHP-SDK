@@ -28,7 +28,7 @@ class Playlists
     {
         SpotifyPagination::setHasPagination(false);
         return [
-            'setQueryParams' => ['uris' => implode(',', $uris)],
+            'setJsonParams' => ['uris' => implode(',', $uris)],
             'requestType' => 'POST',
             'uri' => str_replace('{playlist_id}', $playlist_id, self::PLAYLIST_TRACKS),
         ];
@@ -44,7 +44,7 @@ class Playlists
     {
         SpotifyPagination::setHasPagination(false);
         return [
-            'setQueryParams' => $values,
+            'setJsonParams' => $values,
             'requestType' => 'PUT',
             'uri' => str_replace('{playlist_id}', $playlist_id, self::GET_PLAYLIST),
         ];
@@ -60,7 +60,7 @@ class Playlists
     {
         SpotifyPagination::setHasPagination(false);
         return [
-            'setQueryParams' => $values,
+            'setJsonParams' => $values,
             'requestType' => 'POST',
             'uri' => str_replace('{user_id}', $user_id, self::USERS_PLAYLISTS),
         ];
@@ -145,7 +145,7 @@ class Playlists
     {
         SpotifyPagination::setHasPagination(false);
         return [
-            'setQueryParams' => ['tracks' => implode(',', $tracks)],
+            'setJsonParams' => ['tracks' => implode(',', $tracks)],
             'requestType' => 'DELETE',
             'uri' => str_replace('{playlist_id}', $playlist_id, self::PLAYLIST_TRACKS),
         ];
@@ -161,7 +161,7 @@ class Playlists
     {
         SpotifyPagination::setHasPagination(false);
         return [
-            'setQueryParams' => $params,
+            'setJsonParams' => $params,
             'requestType' => 'PUT',
             'uri' => str_replace('{playlist_id}', $playlist_id, self::PLAYLIST_TRACKS),
         ];
@@ -177,7 +177,7 @@ class Playlists
     {
         SpotifyPagination::setHasPagination(false);
         return [
-            'setQueryParams' => ['uris' => implode(',', $uris)],
+            'setJsonParams' => ['uris' => implode(',', $uris)],
             'requestType' => 'PUT',
             'uri' => str_replace('{playlist_id}', $playlist_id, self::PLAYLIST_TRACKS),
         ];
@@ -193,7 +193,7 @@ class Playlists
     {
         SpotifyPagination::setHasPagination(false);
         return [
-            'setQueryParams' => $image,
+            'setJsonParams' => $image,
             'requestType' => 'PUT',
             'uri' => str_replace('{playlist_id}', $playlist_id, self::PLAYLIST_IMAGES),
         ];
